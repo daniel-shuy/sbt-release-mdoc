@@ -12,4 +12,6 @@ lazy val root = (project in file("."))
     crossSbtVersions := Seq(
       "1.2.8"
     ),
+
+    addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
   )
