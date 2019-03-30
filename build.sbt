@@ -14,4 +14,5 @@ lazy val root = (project in file("."))
     ),
 
     addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
+    addSbtPlugin("org.scalameta" % "sbt-mdoc" % "1.0.0" ),
   )
