@@ -1,3 +1,5 @@
+val mdocVersion = "1.0.0"
+
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
   .settings(
@@ -14,5 +16,9 @@ lazy val root = (project in file("."))
     ),
 
     addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
-    addSbtPlugin("org.scalameta" % "sbt-mdoc" % "1.0.0" ),
+
+    addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion),
+    libraryDependencies ++= Seq(
+        "org.scalameta" %% "mdoc" % mdocVersion
+    ),
   )
