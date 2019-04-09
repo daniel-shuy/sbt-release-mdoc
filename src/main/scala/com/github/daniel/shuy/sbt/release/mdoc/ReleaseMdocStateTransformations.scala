@@ -66,7 +66,7 @@ object ReleaseMdocStateTransformations {
         .map(_.get)
       outputFiles.foreach(vcsInstance.add(_) !! log)
 
-      val status = (vcs(st).status !!) trim
+      val status = (vcsInstance.status !!) trim
 
       val newState = if (status.nonEmpty) {
         val (state, msg) =
