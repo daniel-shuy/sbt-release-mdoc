@@ -3,35 +3,35 @@ val mdocVersion = "1.0.0"
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
   .settings(
-      organization := "com.github.daniel-shuy",
+    organization := "com.github.daniel-shuy",
 
-      name := "sbt-release-mdoc",
+    name := "sbt-release-mdoc",
 
-      licenses := Seq("Apache License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
+    licenses := Seq("Apache License, Version 2.0" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt")),
 
-      homepage := Some(url("https://github.com/daniel-shuy/sbt-release-mdoc")),
+    homepage := Some(url("https://github.com/daniel-shuy/sbt-release-mdoc")),
 
-      crossSbtVersions := Seq(
-          "1.2.8"
-      ),
+    crossSbtVersions := Seq(
+      "1.2.8"
+    ),
 
-      addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
+    addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
 
-      addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion),
-      libraryDependencies ++= Seq(
-          "org.scalameta" %% "mdoc" % mdocVersion
-      ),
+    addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion),
+    libraryDependencies ++= Seq(
+      "org.scalameta" %% "mdoc" % mdocVersion
+    ),
 
-      // scripted test settings
-      scriptedLaunchOpts := scriptedLaunchOpts.value ++ Seq(
-            "-Xmx1024M",
-            "-Dplugin.version=" + version.value
-      ),
-      scriptedBufferLog := false,
+    // scripted test settings
+    scriptedLaunchOpts := scriptedLaunchOpts.value ++ Seq(
+      "-Xmx1024M",
+      "-Dplugin.version=" + version.value
+    ),
+    scriptedBufferLog := false,
 
-      // sbt-bintray settings
-      publishMavenStyle := false,
-      bintrayRepository := "sbt-plugins",
-      bintrayPackageLabels := Seq("sbt-plugin", "sbt-release", "mdoc", "sbt-mdoc"),
-      bintrayReleaseOnPublish := false,
+    // sbt-bintray settings
+    publishMavenStyle := false,
+    bintrayRepository := "sbt-plugins",
+    bintrayPackageLabels := Seq("sbt-plugin", "sbt-release", "mdoc", "sbt-mdoc"),
+    bintrayReleaseOnPublish := false,
   )
