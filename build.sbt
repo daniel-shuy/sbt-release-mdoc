@@ -1,3 +1,5 @@
+import ReleaseTransformations._
+
 val mdocVersion = "1.0.0"
 
 lazy val root = (project in file("."))
@@ -34,4 +36,22 @@ lazy val root = (project in file("."))
     bintrayRepository := "sbt-plugins",
     bintrayPackageLabels := Seq("sbt-plugin", "sbt-release", "mdoc", "sbt-mdoc"),
     bintrayReleaseOnPublish := false,
+
+    releaseProcess := Seq[ReleaseStep](
+      checkSnapshotDependencies,
+      inquireVersions,
+      runClean,
+      releaseStepCommandAndRemaining("^ test"),
+      // When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
+      releaseStepCommandAndRemaining("^ publishLocal"),
+      releaseStepCommandAndRemaining("^ scripted"),
+      setReleaseVersion,
+      commitReleaseVersion,
+      tagRelease,
+      releaseStepCommandAndRemaining("^ publish"),
+      releaseStepTask(bintrayRelease),
+      setNextVersion,
+      commitNextVersion,
+      pushChanges
+    )
   )
