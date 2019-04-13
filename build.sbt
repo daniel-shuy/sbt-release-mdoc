@@ -28,4 +28,10 @@ lazy val root = (project in file("."))
             "-Dplugin.version=" + version.value
       ),
       scriptedBufferLog := false,
+
+      // sbt-bintray settings
+      publishMavenStyle := false,
+      bintrayRepository := "sbt-plugins",
+      bintrayPackageLabels := Seq("sbt-plugin", "sbt-release", "mdoc", "sbt-mdoc"),
+      bintrayReleaseOnPublish := false,
   )
