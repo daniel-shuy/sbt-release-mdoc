@@ -21,4 +21,11 @@ lazy val root = (project in file("."))
       libraryDependencies ++= Seq(
           "org.scalameta" %% "mdoc" % mdocVersion
       ),
+
+      // scripted test settings
+      scriptedLaunchOpts := scriptedLaunchOpts.value ++ Seq(
+            "-Xmx1024M",
+            "-Dplugin.version=" + version.value
+      ),
+      scriptedBufferLog := false,
   )
