@@ -31,7 +31,7 @@ lazy val testMdoc = (project in file("."))
 
       "release" should {
         "copy non-markdown files from input directory to output directory" in {
-          val outputFile = mdocOut.value.toScala / "testa.txt"
+          val outputFile = mdocOut.value.toScala / "test.txt"
 
           Command.process(ReleaseKeys.releaseCommand.nameOption.get, sbtState)
 
