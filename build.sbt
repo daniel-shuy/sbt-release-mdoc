@@ -47,11 +47,14 @@ lazy val root = (project in file("."))
       releaseStepCommandAndRemaining("^ scripted"),
       setReleaseVersion,
       commitReleaseVersion,
-      tagRelease,
+      // don't tag, leave it to git flow
+      // tagRelease,
       releaseStepCommandAndRemaining("^ publish"),
       releaseStepTask(bintrayRelease),
       setNextVersion,
       commitNextVersion,
       pushChanges
-    )
+    ),
+    // skip Travis CI build
+    releaseCommitMessage := s"[ci skip] ${releaseCommitMessage.value}",
   )
