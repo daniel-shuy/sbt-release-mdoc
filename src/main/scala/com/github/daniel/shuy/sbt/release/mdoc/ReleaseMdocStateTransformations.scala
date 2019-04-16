@@ -69,10 +69,9 @@ object ReleaseMdocStateTransformations {
       val status = (vcsInstance.status !!) trim
 
       val newState = if (status.nonEmpty) {
-        vcs(st).commit(
-          ReleaseMdocPlugin.autoImport.releaseMdocCommitMessage.value,
-          sign,
-          signOff) ! log
+        val msg =
+          st.extract.get(ReleaseMdocPlugin.autoImport.releaseMdocCommitMessage)
+        vcs(st).commit(msg, sign, signOff) ! log
         st
       } else {
         // nothing to commit. this happens if the mdoc output files haven't changed.
