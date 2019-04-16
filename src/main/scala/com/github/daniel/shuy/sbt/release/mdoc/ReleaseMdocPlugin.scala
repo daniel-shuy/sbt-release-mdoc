@@ -1,7 +1,7 @@
 package com.github.daniel.shuy.sbt.release.mdoc
 
 import mdoc.MdocPlugin
-import sbt.{AutoPlugin, Def, taskKey}
+import sbt.{AutoPlugin, Def, settingKey}
 import sbtrelease.ReleasePlugin
 import sbtrelease.ReleasePlugin.autoImport.{ReleaseStep, releaseProcess}
 import sbtrelease.ReleaseStateTransformations._
@@ -12,7 +12,7 @@ object ReleaseMdocPlugin extends AutoPlugin {
 
   object autoImport {
     val releaseMdocCommitMessage =
-      taskKey[String]("The commit message to use when committing mdoc")
+      settingKey[String]("The commit message to use when committing mdoc")
   }
   import autoImport._
 
