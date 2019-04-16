@@ -11,8 +11,8 @@ object ReleaseMdocPlugin extends AutoPlugin {
   override def requires = ReleasePlugin && MdocPlugin
 
   object autoImport {
-    val releaseMdocCommitMessage =
-      settingKey[String]("The commit message to use when committing mdoc")
+    val releaseMdocCommitMessage = settingKey[String](
+      "The commit message to use when committing mdoc output files")
   }
   import autoImport._
 
