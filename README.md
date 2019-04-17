@@ -2,6 +2,11 @@
 
 [ ![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg) ](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
 
+| Branch | Travis CI |
+| ------ | --------- |
+| Master | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=master)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) |
+| Develop | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=develop)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) |
+
 | Plugin Version | SBT Version   | sbt-release Version | sbt-mdoc Version |
 | -------------- | ------------- | ------------------- | ---------------- |
 | 0.x.x          | 1.x.x         | 1.0.11              | 1.x.x            |
