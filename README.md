@@ -1,5 +1,9 @@
 # sbt-release-mdoc
 
+[ ![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg) ](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
+ 
+](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
+
 | Plugin Version | SBT Version   | sbt-release Version | sbt-mdoc Version |
 | -------------- | ------------- | ------------------- | ---------------- |
 | 0.x.x          | 1.x.x         | 1.0.11              | 1.x.x            |
