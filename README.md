@@ -1,6 +1,6 @@
 # sbt-release-mdoc
 
-[ ![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg) ](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
+[![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg)](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
 
 | Branch | Travis CI | Codacy |
 | ------ | --------- | ------ |
