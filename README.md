@@ -15,19 +15,19 @@ This plugin modifies [sbt-release](https://github.com/sbt/sbt-release)'s `releas
 
 The new release process is based on `sbt-release`'s default Release Process (<https://github.com/sbt/sbt-release#user-content-release-process>, <https://github.com/sbt/sbt-release#user-content-the-default-release-process>), with 2 new steps:
 
- 1. Check that the working directory is a git repository and the repository has no outstanding changes. Also prints the hash of the last commit to the console.
- 1. If there are any snapshot dependencies, ask the user whether to continue or not (default: no).
- 1. Ask the user for the `release version` and the `next development version`. Sensible defaults are provided.
- 1. run `clean`
- 1. Run `test:test`, if any test fails, the release process is aborted.
- 1. Write `version in ThisBuild := "$releaseVersion"` to the file `version.sbt` and also apply this setting to the current [build state](http://www.scala-sbt.org/release/docs/Build-State.html).
- 1. Commit the changes in `version.sbt`.
- 1. **Run `mdoc`.**
- 1. **Commit the `mdoc` output files.**
- 1. Tag the previous commit with `v$version` (eg. `v1.2`, `v1.2.3`).
- 1. Run `publish`.
- 1. Write `version in ThisBuild := "nextVersion"` to the file `version.sbt` and also apply this setting to the current build state.
- 1. Commit the changes in `version.sbt`.
+1. Check that the working directory is a git repository and the repository has no outstanding changes. Also prints the hash of the last commit to the console.
+1. If there are any snapshot dependencies, ask the user whether to continue or not (default: no).
+1. Ask the user for the `release version` and the `next development version`. Sensible defaults are provided.
+1. run `clean`
+1. Run `test:test`, if any test fails, the release process is aborted.
+1. Write `version in ThisBuild := "$releaseVersion"` to the file `version.sbt` and also apply this setting to the current [build state](http://www.scala-sbt.org/release/docs/Build-State.html).
+1. Commit the changes in `version.sbt`.
+1. **Run `mdoc`.**
+1. **Commit the `mdoc` output files.**
+1. Tag the previous commit with `v$version` (eg. `v1.2`, `v1.2.3`).
+1. Run `publish`.
+1. Write `version in ThisBuild := "nextVersion"` to the file `version.sbt` and also apply this setting to the current build state.
+1. Commit the changes in `version.sbt`.
  
 specifically:
 ```scala
