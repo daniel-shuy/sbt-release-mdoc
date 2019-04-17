@@ -13,7 +13,7 @@
 
 This plugin modifies [sbt-release](https://github.com/sbt/sbt-release)'s `releaseProcess` `SettingKey` to execute [sbt-mdoc](https://scalameta.org/mdoc/docs/installation.html#sbt)'s `mdoc` `InputTask` and commit the changes during release.
 
-The new release process is based on `sbt-release`'s default Release Process (https://github.com/sbt/sbt-release#user-content-release-process, https://github.com/sbt/sbt-release#user-content-the-default-release-process), with 2 new steps:
+The new release process is based on `sbt-release`'s default Release Process (<https://github.com/sbt/sbt-release#user-content-release-process>, <https://github.com/sbt/sbt-release#user-content-the-default-release-process>), with 2 new steps:
 
  1. Check that the working directory is a git repository and the repository has no outstanding changes. Also prints the hash of the last commit to the console.
  1. If there are any snapshot dependencies, ask the user whether to continue or not (default: no).
@@ -113,6 +113,6 @@ Copyright 2019 Daniel Shuy
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
+<http://www.apache.org/licenses/LICENSE-2.0>
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
