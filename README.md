@@ -2,10 +2,10 @@
 
 [ ![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg) ](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
 
-| Branch | Travis CI |
-| ------ | --------- |
-| Master | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=master)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) |
-| Develop | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=develop)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) |
+| Branch | Travis CI | Codacy |
+| ------ | --------- | ------ |
+| Master | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=master)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=master)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=daniel-shuy/sbt-release-mdoc&amp;utm_campaign=Badge_Grade) |
+| Develop | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=develop)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=develop)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=daniel-shuy/sbt-release-mdoc&amp;utm_campaign=Badge_Grade) |
 
 | Plugin Version | SBT Version   | sbt-release Version | sbt-mdoc Version |
 | -------------- | ------------- | ------------------- | ---------------- |
