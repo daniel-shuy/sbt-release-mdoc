@@ -127,6 +127,7 @@ If you need to customize `sbt-release`'s `releaseProcess`, use `ReleasePlugin.au
 When releasing in a CI tool, set `releaseMdocCommitMessage` to modify the commit message to skip building (else your build may recurse infinitely).
 
 Example for Travis CI:
+
 ```scala
 // build.sbt
 lazy val root = (project in file("."))
