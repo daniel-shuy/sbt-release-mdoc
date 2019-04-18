@@ -84,7 +84,31 @@ lazy val root = (project in file("."))
   )
 ```
 
-### Step 3: Run `sbt release`
+### Step 3: Configure `sbt-mdoc`
+
+See <https://scalameta.org/mdoc/docs/installation.html#reference> for the full documentation on `sbt-mdoc` settings.
+
+Minimal Example to substitute `@VERSION@` placeholders with project `version` and generate markdown files in project base directory:
+
+```markdown
+// docs/README.md
+version = @VERSION@
+```
+
+```scala
+// build.sbt
+lazy val root = (project in file("."))
+  .enablePlugins(MdocPlugin)
+  .settings(
+    mdocOut := baseDirectory.in(ThisBuild).value
+
+    mdocVariables := Map(
+      "VERSION" -> version.value
+    )
+  )
+```
+
+### Step 4: Run `sbt release`
 
 ## Settings
 
