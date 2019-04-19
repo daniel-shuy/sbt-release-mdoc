@@ -1,6 +1,6 @@
 import ReleaseTransformations._
 
-val mdocVersion = "1.0.0"
+val mdocVersion = "1.2.10"
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtPlugin)
