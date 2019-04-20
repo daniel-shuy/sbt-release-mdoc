@@ -15,7 +15,7 @@ lazy val root = (project in file("."))
 
     scmInfo := Some(ScmInfo(
       url("https://github.com/daniel-shuy/sbt-release-mdoc"),
-      "git@github.com:daniel-shuy/sbt-release-mdoc.git"
+      "git@github.com:daniel-shuy/sbt-release-mdoc.git",
     )),
 
     crossSbtVersions := Seq(
