@@ -18,6 +18,10 @@ lazy val root = (project in file("."))
       "git@github.com:daniel-shuy/sbt-release-mdoc.git",
     )),
 
+    developers := List(
+      Developer("daniel-shuy", "Daniel Shuy", "daniel_shuy@hotmail.com", url("https://github.com/daniel-shuy")),
+    ),
+
     crossSbtVersions := Seq(
       "1.2.8"
     ),
