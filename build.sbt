@@ -13,6 +13,11 @@ lazy val root = (project in file("."))
 
     homepage := Some(url("https://github.com/daniel-shuy/sbt-release-mdoc")),
 
+    scmInfo := Some(ScmInfo(
+      url("https://github.com/daniel-shuy/sbt-release-mdoc"),
+      "git@github.com:daniel-shuy/sbt-release-mdoc.git"
+    )),
+
     crossSbtVersions := Seq(
       "1.2.8"
     ),
