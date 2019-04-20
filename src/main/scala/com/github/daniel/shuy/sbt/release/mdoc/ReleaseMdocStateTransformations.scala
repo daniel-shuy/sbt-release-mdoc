@@ -38,14 +38,17 @@ object ReleaseMdocStateTransformations {
       classpath = classpath.mkString(java.io.File.pathSeparator),
       site = st.extract.get(MdocPlugin.autoImport.mdocVariables),
       in = Option(AbsolutePath(st.extract.get(MdocPlugin.autoImport.mdocIn))),
-      out = Option(AbsolutePath(st.extract.get(MdocPlugin.autoImport.mdocOut)))
+      out = Option(AbsolutePath(st.extract.get(MdocPlugin.autoImport.mdocOut))),
     )
     val compileScalacOptions = Project.runTask(scalacOptions.in(Compile), st)
     val props = compileScalacOptions
       .map(_._2.toEither)
       .map(_.map(_.mkString(" ")))
-      .map(_.map(options =>
-        propsDefaultScalacOptions.copy(scalacOptions = options)))
+      .map(
+        _.map(
+          options => propsDefaultScalacOptions.copy(scalacOptions = options),
+        ),
+      )
       .map(_.getOrElse(propsDefaultScalacOptions))
       .getOrElse(propsDefaultScalacOptions)
     val settings = Settings
@@ -98,7 +101,10 @@ object ReleaseMdocStateTransformations {
   protected def vcs(st: State): Vcs = {
     st.extract
       .get(releaseVcs)
-      .getOrElse(sys.error(
-        "Aborting release. Working directory is not a repository of a recognized VCS."))
+      .getOrElse(
+        sys.error(
+          "Aborting release. Working directory is not a repository of a recognized VCS.",
+        ),
+      )
   }
 }
