@@ -73,6 +73,8 @@ libraryDependencies ++= Seq(
 )
 ```
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.scalameta/mdoc_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.scalameta/mdoc_2.12)
+
 ### Step 2: Enable `sbt-mdoc`
 
 ```scala
