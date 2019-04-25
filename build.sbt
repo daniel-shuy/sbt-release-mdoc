@@ -3,7 +3,7 @@ import ReleaseTransformations._
 val mdocVersion = "1.0.0"
 
 lazy val root = (project in file("."))
-  .enablePlugins(SbtPlugin)
+  .enablePlugins(SbtPlugin, MdocPlugin)
   .settings(
     organization := "com.github.daniel-shuy",
     name := "sbt-release-mdoc",
