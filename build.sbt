@@ -44,6 +44,7 @@ lazy val root = (project in file("."))
     // sbt-mdoc settings
     mdocOut := baseDirectory.in(ThisBuild).value,
     mdocVariables := Map(
+      "ORGANIZATION" -> organization.value,
       "VERSION" -> version.value,
       "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
       "MDOC_VERSION" -> mdocVersion,
