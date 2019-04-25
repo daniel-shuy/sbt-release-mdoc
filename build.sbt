@@ -46,6 +46,7 @@ lazy val root = (project in file("."))
     mdocVariables := Map(
       "VERSION" -> version.value,
       "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
+      "MDOC_VERSION" -> mdocVersion,
     ),
     // sbt-bintray settings
     publishMavenStyle := false,

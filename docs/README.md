@@ -66,7 +66,7 @@ Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc 
 ```scala
 addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "@VERSION@")
 
-val mdocVersion = "1.0.0"
+val mdocVersion = "@MDOC_VERSION@"
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion)
 libraryDependencies ++= Seq(
   "org.scalameta" %% "mdoc" % mdocVersion
