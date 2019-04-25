@@ -42,6 +42,9 @@ lazy val root = (project in file("."))
     scriptedBufferLog := false,
     // sbt-mdoc settings
     mdocOut := baseDirectory.in(ThisBuild).value,
+    mdocVariables := Map(
+      "VERSION" -> version.value,
+    ),
     // sbt-bintray settings
     publishMavenStyle := false,
     bintrayRepository := "sbt-plugins",

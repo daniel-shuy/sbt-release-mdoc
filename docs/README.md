@@ -58,13 +58,13 @@ releaseProcess := Seq[ReleaseStep](
 Add the following to your `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.0.1")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "@VERSION@")
 ```
 
 Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc you wish to use:
 
 ```scala
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.0.1")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "@VERSION@")
 
 val mdocVersion = "1.0.0"
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion)
@@ -88,11 +88,11 @@ lazy val root = (project in file("."))
 
 See <https://scalameta.org/mdoc/docs/installation.html#reference> for the full documentation on `sbt-mdoc` settings.
 
-Minimal Example to substitute `@VERSION@` placeholders with project `version` and generate markdown files in project base directory:
+Minimal Example to substitute `@@VERSION@` placeholders with project `version` and generate markdown files in project base directory:
 
 ```markdown
 // docs/README.md
-version = @VERSION@
+version = @@VERSION@
 ```
 
 ```scala
