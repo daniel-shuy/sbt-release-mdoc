@@ -58,13 +58,13 @@ releaseProcess := Seq[ReleaseStep](
 Add the following to your `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("@ORGANIZATION@" % "sbt-release-mdoc" % "@VERSION@")
+addSbtPlugin("@ORGANIZATION@" % "@ARTIFACT_NAME@" % "@VERSION@")
 ```
 
 Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc you wish to use:
 
 ```scala
-addSbtPlugin("@ORGANIZATION@" % "sbt-release-mdoc" % "@VERSION@")
+addSbtPlugin("@ORGANIZATION@" % "@ARTIFACT_NAME@" % "@VERSION@")
 
 val mdocVersion = "@MDOC_VERSION@"
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion)

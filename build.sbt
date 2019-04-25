@@ -45,6 +45,7 @@ lazy val root = (project in file("."))
     mdocOut := baseDirectory.in(ThisBuild).value,
     mdocVariables := Map(
       "ORGANIZATION" -> organization.value,
+      "ARTIFACT_NAME" -> name.value,
       "VERSION" -> version.value,
       "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
       "MDOC_VERSION" -> mdocVersion,
