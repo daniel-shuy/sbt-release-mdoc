@@ -1,6 +1,7 @@
 import ReleaseTransformations._
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 
+val sbtReleaseVersion = "1.0.11"
 val mdocVersion = "1.0.0"
 
 lazy val root = (project in file("."))
@@ -29,7 +30,7 @@ lazy val root = (project in file("."))
       ),
     ),
     crossSbtVersions := Seq("1.2.8"),
-    addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
+    addSbtPlugin("com.github.gseitz" % "sbt-release" % sbtReleaseVersion),
     addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion),
     libraryDependencies ++= Seq(
       "org.scalameta" %% "mdoc" % mdocVersion,
@@ -44,6 +45,7 @@ lazy val root = (project in file("."))
     mdocOut := baseDirectory.in(ThisBuild).value,
     mdocVariables := Map(
       "VERSION" -> version.value,
+      "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
     ),
     // sbt-bintray settings
     publishMavenStyle := false,

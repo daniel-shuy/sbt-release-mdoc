@@ -7,9 +7,9 @@
 | Master  | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=master)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc)  | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=master)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&utm_medium=referral&utm_content=daniel-shuy/sbt-release-mdoc&utm_campaign=Badge_Grade)  |
 | Develop | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=develop)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=develop)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&utm_medium=referral&utm_content=daniel-shuy/sbt-release-mdoc&utm_campaign=Badge_Grade) |
 
-| Plugin Version | SBT Version | sbt-release Version | sbt-mdoc Version |
-| -------------- | ----------- | ------------------- | ---------------- |
-| 0.x.x          | 1.x.x       | 1.0.11              | 1.x.x            |
+| Plugin Version | SBT Version | sbt-release Version   | sbt-mdoc Version |
+| -------------- | ----------- | --------------------- | ---------------- |
+| 0.x.x          | 1.x.x       | @SBT_RELEASE_VERSION@ | 1.x.x            |
 
 This plugin modifies [sbt-release](https://github.com/sbt/sbt-release)'s `releaseProcess` `SettingKey` to execute [sbt-mdoc](https://scalameta.org/mdoc/docs/installation.html#sbt)'s `mdoc` `InputTask` and commit the changes during release.
 
