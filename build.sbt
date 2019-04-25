@@ -1,4 +1,5 @@
 import ReleaseTransformations._
+import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 
 val mdocVersion = "1.0.0"
 
@@ -61,6 +62,8 @@ lazy val root = (project in file("."))
       releaseStepCommandAndRemaining("^ scripted"),
       setReleaseVersion,
       commitReleaseVersion,
+      ReleasePlugin.autoImport.releaseStepInputTask(MdocPlugin.autoImport.mdoc),
+      ReleaseMdocStateTransformations.commitMdoc,
       // don't tag, leave it to git flow
       // tagRelease,
       releaseStepCommandAndRemaining("^ publish"),
@@ -70,5 +73,6 @@ lazy val root = (project in file("."))
       pushChanges,
     ),
     // skip Travis CI build
+    releaseMdocCommitMessage := s"[ci skip] ${releaseMdocCommitMessage.value}",
     releaseCommitMessage := s"[ci skip] ${releaseCommitMessage.value}",
   )
