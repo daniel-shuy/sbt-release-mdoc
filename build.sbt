@@ -50,6 +50,14 @@ lazy val root = (project in file("."))
       "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
       "MDOC_VERSION" -> mdocVersion,
     ),
+    commands += Command
+      .command("mdocCheck") { state =>
+        val newState = Project
+          .extract(state)
+          .appendWithoutSession(Seq(mdocExtraArguments += "--check"), state)
+        Project.extract(newState).runInputTask(mdoc, "", newState)
+        state
+      },
     // sbt-bintray settings
     publishMavenStyle := false,
     bintrayRepository := "sbt-plugins",
