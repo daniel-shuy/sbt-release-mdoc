@@ -1,3 +1,8 @@
+```scala mdoc:invisible
+import sbt._
+import Keys._
+```
+
 # sbt-release-mdoc
 
 [![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg)](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
@@ -57,13 +62,13 @@ releaseProcess := Seq[ReleaseStep](
 
 Add the following to your `project/plugins.sbt`:
 
-```scala
+```scala mdoc:silent
 addSbtPlugin("@ORGANIZATION@" % "@ARTIFACT_NAME@" % "@VERSION@")
 ```
 
 Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc you wish to use:
 
-```scala
+```scala mdoc:silent
 addSbtPlugin("@ORGANIZATION@" % "@ARTIFACT_NAME@" % "@VERSION@")
 
 val mdocVersion = "@MDOC_VERSION@"
