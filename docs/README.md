@@ -125,6 +125,8 @@ lazy val root = (project in file("."))
 
 ## Notes
 
+- This project now uses itself to generate this `README`!
+
 ### Custom Release Process
 
 If you need to customize `sbt-release`'s `releaseProcess`, use `ReleasePlugin.autoImport.releaseStepInputTask(MdocPlugin.autoImport.mdoc)` and `ReleaseMdocStateTransformations.commitMdoc` to add the `ReleaseStep`s to your build.
