@@ -12,7 +12,8 @@ object ReleaseMdocPlugin extends AutoPlugin {
 
   object autoImport {
     val releaseMdocCommitMessage = settingKey[String](
-      "The commit message to use when committing mdoc output files")
+      "The commit message to use when committing mdoc output files",
+    )
   }
   import autoImport._
 
@@ -31,7 +32,7 @@ object ReleaseMdocPlugin extends AutoPlugin {
       publishArtifacts,
       setNextVersion,
       commitNextVersion,
-      pushChanges
+      pushChanges,
     ),
   )
 }
