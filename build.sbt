@@ -1,9 +1,11 @@
 import ReleaseTransformations._
+import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 
+val sbtReleaseVersion = "1.0.11"
 val mdocVersion = "1.0.0"
 
 lazy val root = (project in file("."))
-  .enablePlugins(SbtPlugin)
+  .enablePlugins(SbtPlugin, MdocPlugin)
   .settings(
     organization := "com.github.daniel-shuy",
     name := "sbt-release-mdoc",
@@ -28,7 +30,7 @@ lazy val root = (project in file("."))
       ),
     ),
     crossSbtVersions := Seq("1.2.8"),
-    addSbtPlugin("com.github.gseitz" % "sbt-release" % "1.0.11"),
+    addSbtPlugin("com.github.gseitz" % "sbt-release" % sbtReleaseVersion),
     addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion),
     libraryDependencies ++= Seq(
       "org.scalameta" %% "mdoc" % mdocVersion,
@@ -39,6 +41,23 @@ lazy val root = (project in file("."))
       "-Dplugin.version=" + version.value,
     ),
     scriptedBufferLog := false,
+    // sbt-mdoc settings
+    mdocOut := baseDirectory.in(ThisBuild).value,
+    mdocVariables := Map(
+      "ORGANIZATION" -> organization.value,
+      "ARTIFACT_NAME" -> name.value,
+      "VERSION" -> version.value,
+      "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
+      "MDOC_VERSION" -> mdocVersion,
+    ),
+    commands += Command
+      .command("mdocCheck") { state =>
+        val newState = Project
+          .extract(state)
+          .appendWithoutSession(Seq(mdocExtraArguments += "--check"), state)
+        Project.extract(newState).runInputTask(mdoc, "", newState)
+        state
+      },
     // sbt-bintray settings
     publishMavenStyle := false,
     bintrayRepository := "sbt-plugins",
@@ -59,6 +78,8 @@ lazy val root = (project in file("."))
       releaseStepCommandAndRemaining("^ scripted"),
       setReleaseVersion,
       commitReleaseVersion,
+      ReleasePlugin.autoImport.releaseStepInputTask(MdocPlugin.autoImport.mdoc),
+      ReleaseMdocStateTransformations.commitMdoc,
       // don't tag, leave it to git flow
       // tagRelease,
       releaseStepCommandAndRemaining("^ publish"),
@@ -68,5 +89,6 @@ lazy val root = (project in file("."))
       pushChanges,
     ),
     // skip Travis CI build
+    releaseMdocCommitMessage := s"[ci skip] ${releaseMdocCommitMessage.value}",
     releaseCommitMessage := s"[ci skip] ${releaseCommitMessage.value}",
   )
