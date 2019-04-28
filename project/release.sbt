@@ -1,4 +1,4 @@
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.0.1")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.1.0")
 
 val mdocVersion = "1.2.10"
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion)
