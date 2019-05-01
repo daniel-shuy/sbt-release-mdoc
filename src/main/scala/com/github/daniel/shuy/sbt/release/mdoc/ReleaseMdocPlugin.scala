@@ -1,5 +1,6 @@
 package com.github.daniel.shuy.sbt.release.mdoc
 
+import com.github.daniel.shuy.sbt.release
 import mdoc.MdocPlugin
 import sbt.{AutoPlugin, Def, settingKey}
 import sbtrelease.ReleasePlugin
@@ -14,6 +15,10 @@ object ReleaseMdocPlugin extends AutoPlugin {
     val releaseMdocCommitMessage = settingKey[String](
       "The commit message to use when committing mdoc output files",
     )
+
+    lazy val ReleaseMdocStateTransformations
+        : release.mdoc.ReleaseMdocStateTransformations.type =
+      release.mdoc.ReleaseMdocStateTransformations
   }
   import autoImport._
 
@@ -27,7 +32,7 @@ object ReleaseMdocPlugin extends AutoPlugin {
       setReleaseVersion,
       commitReleaseVersion,
       ReleasePlugin.autoImport.releaseStepInputTask(MdocPlugin.autoImport.mdoc),
-      ReleaseMdocStateTransformations.commitMdoc,
+      autoImport.ReleaseMdocStateTransformations.commitMdoc,
       tagRelease,
       publishArtifacts,
       setNextVersion,
