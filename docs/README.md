@@ -107,11 +107,11 @@ version = @@VERSION@
 lazy val root = (project in file("."))
   .enablePlugins(MdocPlugin)
   .settings(
-    mdocOut := baseDirectory.in(ThisBuild).value
+    mdocOut := baseDirectory.in(ThisBuild).value,
 
     mdocVariables := Map(
       "VERSION" -> version.value
-    )
+    ),
   )
 ```
 
