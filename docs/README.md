@@ -1,8 +1,3 @@
-```scala mdoc:invisible
-import sbt._
-import Keys._
-```
-
 # sbt-release-mdoc
 
 [![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg)](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
@@ -36,7 +31,14 @@ The new release process is based on `sbt-release`'s default Release Process (<ht
 
 specifically:
 
-```scala
+```scala mdoc:invisible:reset-class
+import sbtrelease.{ReleasePlugin, ReleaseStateTransformations}
+import ReleasePlugin.autoImport._
+import mdoc.MdocPlugin
+import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
+```
+
+```scala mdoc:silent
 import ReleaseStateTransformations._
 
 releaseProcess := Seq[ReleaseStep](
@@ -62,11 +64,20 @@ releaseProcess := Seq[ReleaseStep](
 
 Add the following to your `project/plugins.sbt`:
 
+```scala mdoc:invisible:reset-class
+import sbt._
+```
+
 ```scala mdoc:silent
 addSbtPlugin("@ORGANIZATION@" % "@ARTIFACT_NAME@" % "@VERSION@")
 ```
 
 Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc you wish to use:
+
+```scala mdoc:invisible:reset-class
+import sbt._
+import Keys._
+```
 
 ```scala mdoc:silent
 addSbtPlugin("@ORGANIZATION@" % "@ARTIFACT_NAME@" % "@VERSION@")
@@ -82,7 +93,12 @@ libraryDependencies ++= Seq(
 
 ### Step 2: Enable `sbt-mdoc`
 
-```scala
+```scala mdoc:invisible:reset-class
+import sbt._
+import mdoc.MdocPlugin
+```
+
+```scala mdoc:silent
 // build.sbt
 lazy val root = (project in file("."))
   .enablePlugins(MdocPlugin)
@@ -102,7 +118,14 @@ Minimal Example to substitute `@@VERSION@` placeholders with project `version` a
 version = @@VERSION@
 ```
 
-```scala
+```scala mdoc:invisible:reset-class
+import sbt._
+import Keys._
+import mdoc.MdocPlugin
+import MdocPlugin.autoImport.{mdocOut, mdocVariables}
+```
+
+```scala mdoc:silent
 // build.sbt
 lazy val root = (project in file("."))
   .enablePlugins(MdocPlugin)
@@ -137,7 +160,13 @@ When releasing in a CI tool, set `releaseMdocCommitMessage` to modify the commit
 
 Example for Travis CI:
 
-```scala
+```scala mdoc:invisible:reset-class
+import sbt._
+import mdoc.MdocPlugin
+import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocPlugin.autoImport.releaseMdocCommitMessage
+```
+
+```scala mdoc:silent
 // build.sbt
 lazy val root = (project in file("."))
   .enablePlugins(MdocPlugin)
