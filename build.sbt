@@ -33,6 +33,7 @@ lazy val root = project
   .in(file("."))
   .settings(
     skip in publish := true,
+    releaseIgnoreUntrackedFiles := true,
     releaseProcess := Seq[ReleaseStep](
       checkSnapshotDependencies,
       inquireVersions,
