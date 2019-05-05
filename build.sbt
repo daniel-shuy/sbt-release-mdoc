@@ -38,12 +38,12 @@ lazy val root = project
       checkSnapshotDependencies,
       inquireVersions,
     ),
-    releaseProcess ++= releaseScopedStepCommandAndRemaining(sbtReleaseMdoc).toSeq,
+    releaseProcess ++= releaseStepScopedReleaseAndRemaining(sbtReleaseMdoc).toSeq,
     releaseProcess ++= Seq[ReleaseStep](
       setReleaseVersion,
       commitReleaseVersion,
     ),
-    releaseProcess ++= releaseScopedStepCommandAndRemaining(docs).toSeq,
+    releaseProcess ++= releaseStepScopedReleaseAndRemaining(docs).toSeq,
     releaseProcess ++= Seq[ReleaseStep](
       // don't tag, leave it to git flow
       // tagRelease,
@@ -134,7 +134,7 @@ def scopedCommand(
   })
 }
 
-def releaseScopedStepCommandAndRemaining(
+def releaseStepScopedReleaseAndRemaining(
     project: Project,
 ): Option[State => State] = {
   scopedCommand(

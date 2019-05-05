@@ -2,9 +2,15 @@ package com.github.daniel.shuy.sbt.release.mdoc
 
 import com.github.daniel.shuy.sbt.release
 import mdoc.MdocPlugin
-import sbt.{AutoPlugin, Def, settingKey}
+import sbt.Keys.name
+import sbt.{AutoPlugin, Command, Def, Project, State, settingKey}
 import sbtrelease.ReleasePlugin
-import sbtrelease.ReleasePlugin.autoImport.{ReleaseStep, releaseProcess}
+import sbtrelease.ReleasePlugin.autoImport.{
+  ReleaseKeys,
+  ReleaseStep,
+  releaseProcess,
+  releaseStepCommandAndRemaining,
+}
 import sbtrelease.ReleaseStateTransformations._
 
 object ReleaseMdocPlugin extends AutoPlugin {
@@ -19,6 +25,48 @@ object ReleaseMdocPlugin extends AutoPlugin {
     lazy val ReleaseMdocStateTransformations
         : release.mdoc.ReleaseMdocStateTransformations.type =
       release.mdoc.ReleaseMdocStateTransformations
+
+    /**
+      * Obtain a Command String scoped to the given SBT project.
+      *
+      * @param project The SBT project.
+      * @param command The SBT command.
+      * @return A scoped Command String.
+      */
+    def scopedCommand(
+        project: Project,
+        command: Command,
+    ): Option[State => String] = {
+      command.nameOption.map(commandName => {
+        state: State => {
+          val extracted = Project.extract(state)
+          val projectName = extracted.get(project / name)
+          s";project $projectName; $commandName; project ${extracted.currentProject.id}"
+        },
+      })
+    }
+
+    /**
+      * Convert the release Command for the given SBT project to a release step action,
+      * preserving and invoking remaining commands
+      *
+      * @param project The SBT project.
+      * @return A release step action.
+      */
+    def releaseStepScopedReleaseAndRemaining(
+        project: Project,
+    ): Option[State => State] = {
+      scopedCommand(
+        project,
+        ReleaseKeys.releaseCommand,
+      ).map(stateToCommand => {
+        state: State => {
+          val command = stateToCommand.apply(state)
+          releaseStepCommandAndRemaining(command)
+            .apply(state)
+        },
+      })
+    }
   }
   import autoImport._
 
