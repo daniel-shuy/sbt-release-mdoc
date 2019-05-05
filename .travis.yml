@@ -16,7 +16,7 @@ jobs:
     - name: test
       if: (NOT branch =~ /^release\/.*$/)
       # When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
-      script: sbt "^ publishLocal" "^ scripted" "mdoc"
+      script: sbt "^ publishLocal" "^ scripted" "scalafmtSbtCheck" "scalafmtCheckAll" "mdoc"
     - name: release
       if: (branch =~ /^release\/.*$/)
       env:
