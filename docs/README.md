@@ -175,6 +175,72 @@ lazy val root = (project in file("."))
   )
 ```
 
+### Extra Mdoc Dependencies
+
+Because Mdoc can only import from dependencies that are available at runtime, if you need to import a `provided`/`test` dependency or a dependency that your project doesn't already depend on, separate the Mdoc project and add them to `libraryDependencies`.
+
+```scala mdoc:invisible:reset-class
+import sbt._
+import Keys._
+import sbtrelease.{ReleasePlugin, ReleaseStateTransformations}
+import ReleasePlugin.autoImport._
+import mdoc.MdocPlugin
+import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocPlugin.autoImport._
+```
+
+```scala mdoc:silent
+import ReleaseTransformations._
+
+lazy val root = project
+  .in(file("."))
+  .settings(
+    skip in publish := true,
+    releaseProcess := Seq[ReleaseStep](
+      checkSnapshotDependencies,
+      inquireVersions,
+    ),
+    releaseProcess ++= releaseStepScopedReleaseAndRemaining(myproject).toSeq,
+    releaseProcess ++= Seq[ReleaseStep](
+      setReleaseVersion,
+      commitReleaseVersion,
+    ),
+    releaseProcess ++= releaseStepScopedReleaseAndRemaining(docs).toSeq,
+    releaseProcess ++= Seq[ReleaseStep](
+      tagRelease,
+      publishArtifacts,
+      setNextVersion,
+      commitNextVersion,
+      pushChanges,
+    ),
+  )
+  .aggregate(myproject, docs)
+
+lazy val myproject = project  // your existing library
+  .settings(
+    // ...
+    releaseProcess := Seq[ReleaseStep](
+      runClean,
+      runTest,
+    ),
+    // ...
+  )
+
+lazy val docs = project
+  .in(file("myproject-docs"))
+  .settings(
+    skip in publish := true,
+    libraryDependencies ++= Seq(
+      // declare additional dependencies here
+    ),
+    releaseProcess := Seq[ReleaseStep](
+      ReleasePlugin.autoImport.releaseStepInputTask(MdocPlugin.autoImport.mdoc),
+      ReleaseMdocStateTransformations.commitMdoc,
+    ),
+  )
+  .dependsOn(myproject)
+  .enablePlugins(MdocPlugin)
+```
+
 ## Licence
 
 Copyright 2019 Daniel Shuy
