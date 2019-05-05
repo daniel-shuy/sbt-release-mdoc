@@ -32,10 +32,10 @@ The new release process is based on `sbt-release`'s default Release Process (<ht
 specifically:
 
 ```scala mdoc:invisible:reset-class
-import sbtrelease.{ReleasePlugin, ReleaseStateTransformations}
-import ReleasePlugin.autoImport._
-import mdoc.MdocPlugin
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
+import mdoc.MdocPlugin
+import sbtrelease.{ReleasePlugin, ReleaseStateTransformations}
+import sbtrelease.ReleasePlugin.autoImport._
 ```
 
 ```scala mdoc:silent
@@ -76,7 +76,7 @@ Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc 
 
 ```scala mdoc:invisible:reset-class
 import sbt._
-import Keys._
+import sbt.Keys._
 ```
 
 ```scala mdoc:silent
@@ -94,8 +94,8 @@ libraryDependencies ++= Seq(
 ### Step 2: Enable `sbt-mdoc`
 
 ```scala mdoc:invisible:reset-class
-import sbt._
 import mdoc.MdocPlugin
+import sbt._
 ```
 
 ```scala mdoc:silent
@@ -119,10 +119,10 @@ version = @@VERSION@
 ```
 
 ```scala mdoc:invisible:reset-class
-import sbt._
-import Keys._
 import mdoc.MdocPlugin
-import MdocPlugin.autoImport.{mdocOut, mdocVariables}
+import mdoc.MdocPlugin.autoImport.{mdocOut, mdocVariables}
+import sbt._
+import sbt.Keys._
 ```
 
 ```scala mdoc:silent
@@ -161,9 +161,9 @@ When releasing in a CI tool, set `releaseMdocCommitMessage` to modify the commit
 Example for Travis CI:
 
 ```scala mdoc:invisible:reset-class
-import sbt._
-import mdoc.MdocPlugin
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocPlugin.autoImport.releaseMdocCommitMessage
+import mdoc.MdocPlugin
+import sbt._
 ```
 
 ```scala mdoc:silent
@@ -180,12 +180,12 @@ lazy val root = (project in file("."))
 Because Mdoc can only import from dependencies that are available at runtime, if you need to import a `provided`/`test` dependency or a dependency that your project doesn't already depend on, separate the Mdoc project and add them to `libraryDependencies`.
 
 ```scala mdoc:invisible:reset-class
-import sbt._
-import Keys._
-import sbtrelease.{ReleasePlugin, ReleaseStateTransformations}
-import ReleasePlugin.autoImport._
-import mdoc.MdocPlugin
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocPlugin.autoImport._
+import mdoc.MdocPlugin
+import sbt._
+import sbt.Keys._
+import sbtrelease.{ReleasePlugin, ReleaseStateTransformations}
+import sbtrelease.ReleasePlugin.autoImport._
 ```
 
 ```scala mdoc:silent
