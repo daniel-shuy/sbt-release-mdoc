@@ -40,6 +40,8 @@ lazy val root = project
     ),
     releaseProcess ++= releaseStepScopedReleaseAndRemaining(sbtReleaseMdoc).toSeq,
     releaseProcess ++= Seq[ReleaseStep](
+      releaseStepTask(scalafmtSbtCheck),
+      releaseStepTask(scalafmtCheckAll),
       setReleaseVersion,
       commitReleaseVersion,
     ),
