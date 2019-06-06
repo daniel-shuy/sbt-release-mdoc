@@ -1,0 +1,9 @@
+component_depth: 15
+languages:
+  - name: scala
+    production:
+      include:
+        - /sbt-release-mdoc/src/main/scala/.*
+    test:
+      include:
+        - /sbt-release-mdoc/src/sbt-test/.*
