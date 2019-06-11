@@ -11,5 +11,5 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8"
 
 libraryDependencies ++= Seq(
   "org.eclipse.jgit" % "org.eclipse.jgit" % "5.3.0.201903130848-r",
-  "com.github.pathikrit" %% "better-files" % "3.7.1",
+  "com.github.pathikrit" %% "better-files" % "3.8.0",
 )

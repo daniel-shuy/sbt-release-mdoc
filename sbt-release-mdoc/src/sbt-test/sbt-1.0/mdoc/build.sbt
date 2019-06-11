@@ -1,4 +1,4 @@
-import better.files.FileOps
+import better.files.FileExtensions
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 import com.github.daniel.shuy.sbt.scripted.scalatest.ScriptedScalaTestSuiteMixin
 import org.eclipse.jgit.api.{Git => JGit}
