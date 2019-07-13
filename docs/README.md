@@ -148,7 +148,7 @@ lazy val root = (project in file("."))
 
 ## Notes
 
-- This project now uses itself to generate this `README`!
+-   This project now uses itself to generate this `README`!
 
 ### Custom Release Process
 
