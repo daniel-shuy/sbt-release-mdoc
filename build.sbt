@@ -40,9 +40,11 @@ lazy val root = project
     ),
     releaseProcess ++= releaseStepScopedReleaseAndRemaining(sbtReleaseMdoc).toSeq,
     releaseProcess ++= Seq[ReleaseStep](
+      /*
       // execute scalafmt in Travis CI build instead
-      // releaseStepTask(scalafmtSbtCheck),
-      // releaseStepTask(scalafmtCheckAll),
+      releaseStepTask(scalafmtSbtCheck),
+      releaseStepTask(scalafmtCheckAll),
+       */
       setReleaseVersion,
       commitReleaseVersion,
     ),
@@ -90,11 +92,14 @@ lazy val sbtReleaseMdoc = project
     ),
     bintrayReleaseOnPublish := false,
     releaseProcess := Seq[ReleaseStep](
+      /*
+      // run tests in Travis CI build instead
       runClean,
       releaseStepCommandAndRemaining("^ test"),
       // When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
       releaseStepCommandAndRemaining("^ publishLocal"),
       releaseStepCommandAndRemaining("^ scripted"),
+       */
     ),
   )
   .enablePlugins(SbtPlugin)
