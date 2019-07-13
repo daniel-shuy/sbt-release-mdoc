@@ -4,5 +4,13 @@
   ],
   "ignoreDeps": [
     "org.scalameta:mdoc"
-  ]
+  ],
+  "rebaseStalePrs": true,
+  "automerge": true,
+  "packageRules": [{
+    "packageNames": [
+      "org.scalameta:sbt-scalafmt"
+    ],
+    "automerge": false
+  }]
 }
