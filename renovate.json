@@ -7,6 +7,9 @@
   ],
   "rebaseStalePrs": true,
   "automerge": true,
+  "major": {
+    "automerge": false
+  },
   "packageRules": [{
     "packageNames": [
       "org.scalameta:sbt-scalafmt"
