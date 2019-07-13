@@ -99,7 +99,7 @@ lazy val sbtReleaseMdoc = project
       // When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
       releaseStepCommandAndRemaining("^ publishLocal"),
       releaseStepCommandAndRemaining("^ scripted"),
-       */
+     */
     ),
   )
   .enablePlugins(SbtPlugin)
