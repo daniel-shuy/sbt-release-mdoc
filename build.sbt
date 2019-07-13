@@ -40,8 +40,9 @@ lazy val root = project
     ),
     releaseProcess ++= releaseStepScopedReleaseAndRemaining(sbtReleaseMdoc).toSeq,
     releaseProcess ++= Seq[ReleaseStep](
-      releaseStepTask(scalafmtSbtCheck),
-      releaseStepTask(scalafmtCheckAll),
+      // execute scalafmt in Travis CI build instead
+      // releaseStepTask(scalafmtSbtCheck),
+      // releaseStepTask(scalafmtCheckAll),
       setReleaseVersion,
       commitReleaseVersion,
     ),

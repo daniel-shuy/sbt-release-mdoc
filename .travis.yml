@@ -14,7 +14,9 @@ jdk: openjdk8
 jobs:
   include:
     - stage: check
-      name: remark-lint
+      name: scalafmt
+      script: sbt "scalafmtSbtCheck" "scalafmtCheckAll"
+    - name: remark-lint
       before_install:
         - npm install --global remark-cli
         - npm install # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
