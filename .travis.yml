@@ -13,7 +13,7 @@ jdk: openjdk8
 
 jobs:
   include:
-    - stage: check
+    - stage: lint
       name: scalafmt
       script: sbt "scalafmtSbtCheck" "scalafmtCheckAll"
     - name: remark-lint
