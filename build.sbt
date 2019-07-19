@@ -34,6 +34,7 @@ lazy val root = project
   .settings(
     skip in publish := true,
     // sbt-bintray settings
+    bintrayPackage := "sbt-release-mdoc",
     bintrayRepository := "sbt-plugins",
     bintrayPackageLabels := Seq(
       "sbt-plugin",
