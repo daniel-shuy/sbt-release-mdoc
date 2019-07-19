@@ -33,6 +33,14 @@ lazy val root = project
   .in(file("."))
   .settings(
     skip in publish := true,
+    // sbt-bintray settings
+    bintrayRepository := "sbt-plugins",
+    bintrayPackageLabels := Seq(
+      "sbt-plugin",
+      "sbt-release",
+      "mdoc",
+      "sbt-mdoc",
+    ),
     releaseIgnoreUntrackedFiles := true,
     releaseProcess := Seq[ReleaseStep](
       checkSnapshotDependencies,
@@ -83,13 +91,6 @@ lazy val sbtReleaseMdoc = project
     scriptedBufferLog := false,
     // sbt-bintray settings
     publishMavenStyle := false,
-    bintrayRepository := "sbt-plugins",
-    bintrayPackageLabels := Seq(
-      "sbt-plugin",
-      "sbt-release",
-      "mdoc",
-      "sbt-mdoc",
-    ),
     bintrayReleaseOnPublish := false,
     releaseProcess := Seq[ReleaseStep](
       /*
