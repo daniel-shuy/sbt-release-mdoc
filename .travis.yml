@@ -13,11 +13,20 @@ jdk: openjdk8
 
 jobs:
   include:
-    - name: test
-      if: (NOT branch =~ /^release\/.*$/)
+    - stage: lint
+      name: scalafmt
+      script: sbt "scalafmtSbtCheck" "scalafmtCheckAll"
+    - name: remark-lint
+      before_install:
+        - npm install --global remark-cli
+        - npm install # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
+      script: remark .
+    - name: mdoc check
+      script: sbt mdoc
+    - stage: test
       # When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
-      script: sbt "^ publishLocal" "^ scripted" "mdoc"
-    - name: release
+      script: sbt "^ test" "^ publishLocal" "^ scripted"
+    - stage: release
       if: (branch =~ /^release\/.*$/)
       env:
         - BINTRAY_USER=daniel-shuy
