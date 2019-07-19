@@ -2,10 +2,10 @@
 
 [![Download](https://api.bintray.com/packages/daniel-shuy/sbt-plugins/sbt-release-mdoc/images/download.svg)](https://bintray.com/daniel-shuy/sbt-plugins/sbt-release-mdoc/_latestVersion)
 
-| Branch  |                                                                  Travis CI                                                                   |                                                                                                                                       Codacy                                                                                                                                       |
-|---------|----------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Master  | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=master)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc)  | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=master)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&utm_medium=referral&utm_content=daniel-shuy/sbt-release-mdoc&utm_campaign=Badge_Grade)  |
-| Develop | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=develop)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=develop)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&utm_medium=referral&utm_content=daniel-shuy/sbt-release-mdoc&utm_campaign=Badge_Grade) |
+| Branch  |                                                                  Travis CI                                                                   |                                                                                             CodeFactor                                                                                             |                                                                                                                                       Codacy                                                                                                                                       |                                                          Better Code Hub                                                          |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Master  | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=master)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc)  | [![CodeFactor](https://www.codefactor.io/repository/github/daniel-shuy/sbt-release-mdoc/badge/master)](https://www.codefactor.io/repository/github/daniel-shuy/sbt-release-mdoc/overview/master)   | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=master)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&utm_medium=referral&utm_content=daniel-shuy/sbt-release-mdoc&utm_campaign=Badge_Grade)  | [![BCH compliance](https://bettercodehub.com/edge/badge/daniel-shuy/sbt-release-mdoc?branch=master)](https://bettercodehub.com/)  |
+| Develop | [![Build Status](https://travis-ci.org/daniel-shuy/sbt-release-mdoc.svg?branch=develop)](https://travis-ci.org/daniel-shuy/sbt-release-mdoc) | [![CodeFactor](https://www.codefactor.io/repository/github/daniel-shuy/sbt-release-mdoc/badge/develop)](https://www.codefactor.io/repository/github/daniel-shuy/sbt-release-mdoc/overview/develop) | [![Codacy Badge](https://api.codacy.com/project/badge/Grade/7200688e08804c60bbf9cd9107811aaa?branch=develop)](https://www.codacy.com/app/daniel-shuy/sbt-release-mdoc?utm_source=github.com&utm_medium=referral&utm_content=daniel-shuy/sbt-release-mdoc&utm_campaign=Badge_Grade) | [![BCH compliance](https://bettercodehub.com/edge/badge/daniel-shuy/sbt-release-mdoc?branch=develop)](https://bettercodehub.com/) |
 
 | Plugin Version | SBT Version | sbt-release Version | sbt-mdoc Version |
 |----------------|-------------|---------------------|------------------|
@@ -58,13 +58,13 @@ releaseProcess := Seq[ReleaseStep](
 Add the following to your `project/plugins.sbt`:
 
 ```scala
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.1.1")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.2.0")
 ```
 
 Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc you wish to use:
 
 ```scala
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.1.1")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "0.2.0")
 
 val mdocVersion = "1.0.0"
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion)
@@ -102,11 +102,11 @@ version = @VERSION@
 lazy val root = (project in file("."))
   .enablePlugins(MdocPlugin)
   .settings(
-    mdocOut := baseDirectory.in(ThisBuild).value
+    mdocOut := baseDirectory.in(ThisBuild).value,
 
     mdocVariables := Map(
       "VERSION" -> version.value
-    )
+    ),
   )
 ```
 
@@ -139,6 +139,63 @@ lazy val root = (project in file("."))
   .settings(
     releaseMdocCommitMessage := s"[ci skip] ${releaseMdocCommitMessage.value}"
   )
+```
+
+### Extra Mdoc Dependencies
+
+Because Mdoc can only import from dependencies that are available at runtime, if you need to import a `provided`/`test` dependency or a dependency that your project doesn't already depend on, separate the Mdoc project and add them to `libraryDependencies`.
+
+```scala
+import ReleaseTransformations._
+
+lazy val root = project
+  .in(file("."))
+  .settings(
+    skip in publish := true,
+    releaseProcess := Seq[ReleaseStep](
+      checkSnapshotDependencies,
+      inquireVersions,
+    ),
+    releaseProcess ++= releaseStepScopedReleaseAndRemaining(myproject).toSeq,
+    releaseProcess ++= Seq[ReleaseStep](
+      setReleaseVersion,
+      commitReleaseVersion,
+    ),
+    releaseProcess ++= releaseStepScopedReleaseAndRemaining(docs).toSeq,
+    releaseProcess ++= Seq[ReleaseStep](
+      tagRelease,
+      publishArtifacts,
+      setNextVersion,
+      commitNextVersion,
+      pushChanges,
+    ),
+  )
+  .aggregate(myproject, docs)
+
+lazy val myproject = project  // your existing library
+  .settings(
+    // ...
+    releaseProcess := Seq[ReleaseStep](
+      runClean,
+      runTest,
+    ),
+    // ...
+  )
+
+lazy val docs = project
+  .in(file("myproject-docs"))
+  .settings(
+    skip in publish := true,
+    libraryDependencies ++= Seq(
+      // declare additional dependencies here
+    ),
+    releaseProcess := Seq[ReleaseStep](
+      ReleasePlugin.autoImport.releaseStepInputTask(MdocPlugin.autoImport.mdoc),
+      ReleaseMdocStateTransformations.commitMdoc,
+    ),
+  )
+  .dependsOn(myproject)
+  .enablePlugins(MdocPlugin)
 ```
 
 ## Licence
