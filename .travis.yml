@@ -19,7 +19,7 @@ jobs:
     - name: remark-lint
       before_install:
         - npm install --global remark-cli
-        - npm install # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
+        - npm ci # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
       script: remark .
     - name: mdoc check
       script: sbt mdoc
