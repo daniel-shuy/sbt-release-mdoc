@@ -25,7 +25,7 @@ jobs:
       script: sbt mdoc
     - stage: test
       # When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
-      script: sbt "^ test" "^ publishLocal" "^ scripted"
+      script: sbt "^ test" "^ publishLocal" "scripted"
     - stage: release
       if: (branch =~ /^release\/.*$/)
       env:
