@@ -18,9 +18,8 @@ jobs:
       script: sbt "scalafmtSbtCheck" "scalafmtCheckAll"
     - name: remark-lint
       before_install:
-        - npm install --global remark-cli
         - npm ci # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
-      script: remark .
+      script: npm run remark-lint
     - name: mdoc check
       script: sbt mdoc
     - stage: test
