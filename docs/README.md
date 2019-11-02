@@ -9,7 +9,8 @@
 
 | Plugin Version | SBT Version | sbt-release Version   | sbt-mdoc Version |
 | -------------- | ----------- | --------------------- | ---------------- |
-| 0.x.x          | 1.x.x       | @SBT_RELEASE_VERSION@ | 1.x.x            |
+| 0.x.x          | 1.x.x       | 1.x.x                 | 1.x.x            |
+| 1.x.x          | 1.x.x       | 1.x.x                 | 2.x.x            |
 
 This plugin modifies [sbt-release](https://github.com/sbt/sbt-release)'s `releaseProcess` `SettingKey` to execute [sbt-mdoc](https://scalameta.org/mdoc/docs/installation.html#sbt)'s `mdoc` `InputTask` and commit the changes during release.
 
