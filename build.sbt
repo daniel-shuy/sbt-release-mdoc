@@ -115,7 +115,6 @@ lazy val docs = project
       "ORGANIZATION" -> organization.value,
       "ARTIFACT_NAME" -> (ThisBuild / name).value,
       "VERSION" -> version.value,
-      "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
       "MDOC_VERSION" -> mdocVersion,
     ),
     libraryDependencies ++= Seq(
