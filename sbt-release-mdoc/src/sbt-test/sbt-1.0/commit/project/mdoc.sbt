@@ -1,1 +1,1 @@
-addSbtPlugin("org.scalameta" % "sbt-mdoc" % "1.3.1" )
+addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.0.0" )

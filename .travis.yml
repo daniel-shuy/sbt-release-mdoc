@@ -18,14 +18,14 @@ jobs:
       script: sbt "scalafmtSbtCheck" "scalafmtCheckAll"
     - name: remark-lint
       before_install:
-        - npm install --global remark-cli
-        - npm install # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
-      script: remark .
+        - npm install --global npm@latest
+        - npm ci # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
+      script: npm run remark-lint
     - name: mdoc check
       script: sbt mdoc
     - stage: test
       # When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
-      script: sbt "^ test" "^ publishLocal" "^ scripted"
+      script: sbt "^ test" "^ publishLocal" "scripted"
     - stage: release
       if: (branch =~ /^release\/.*$/)
       env:
@@ -60,6 +60,9 @@ jobs:
 # These directories are cached to S3 at the end of the build
 cache:
   directories:
+    # npm (https://dev.to/hankchanocd/comment/5i5b)
+    - $HOME/.npm
+    # sbt
     - $HOME/.ivy2/cache
     - $HOME/.sbt
 

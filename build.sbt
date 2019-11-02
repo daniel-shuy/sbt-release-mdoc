@@ -100,7 +100,7 @@ lazy val sbtReleaseMdoc = project
       releaseStepCommandAndRemaining("^ test"),
       // When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
       releaseStepCommandAndRemaining("^ publishLocal"),
-      releaseStepCommandAndRemaining("^ scripted"),
+      releaseStepInputTask(scripted),
      */
     ),
   )
@@ -115,7 +115,6 @@ lazy val docs = project
       "ORGANIZATION" -> organization.value,
       "ARTIFACT_NAME" -> (ThisBuild / name).value,
       "VERSION" -> version.value,
-      "SBT_RELEASE_VERSION" -> sbtReleaseVersion,
       "MDOC_VERSION" -> mdocVersion,
     ),
     libraryDependencies ++= Seq(
