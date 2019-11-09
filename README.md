@@ -61,16 +61,16 @@ Add the following to your `project/plugins.sbt`:
 
 
 ```scala
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "1.0.0")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "1.0.1")
 ```
 
 Override the `sbt-mdoc` and `mdoc` dependency versions with the version of mdoc you wish to use:
 
 
 ```scala
-addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "1.0.0")
+addSbtPlugin("com.github.daniel-shuy" % "sbt-release-mdoc" % "1.0.1")
 
-val mdocVersion = "1.0.0"
+val mdocVersion = "2.0.0"
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % mdocVersion)
 libraryDependencies ++= Seq(
   "org.scalameta" %% "mdoc" % mdocVersion

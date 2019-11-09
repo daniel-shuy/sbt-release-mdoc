@@ -2,7 +2,7 @@ import ReleaseTransformations._
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 
 val sbtReleaseVersion = "1.0.11"
-val mdocVersion = "1.0.0"
+val mdocVersion = "2.0.0"
 
 ThisBuild / organization := "com.github.daniel-shuy"
 ThisBuild / name := "sbt-release-mdoc"
@@ -76,7 +76,9 @@ lazy val sbtReleaseMdoc = project
   .in(file("sbt-release-mdoc"))
   .settings(
     moduleName := (ThisBuild / name).value,
-    crossSbtVersions := Seq("1.2.8"),
+    crossSbtVersions := Seq(
+      "1.3.3",
+    ),
     // mdoc must be declared before sbt-mdoc due to package/class name conflict (mdoc.Main)
     // The compiler looks up classes in the build classpath order
     libraryDependencies ++= Seq(
