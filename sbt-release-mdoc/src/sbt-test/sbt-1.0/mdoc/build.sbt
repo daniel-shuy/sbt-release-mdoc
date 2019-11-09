@@ -5,6 +5,8 @@ import org.eclipse.jgit.api.{Git => JGit}
 import org.scalatest.{BeforeAndAfterAll, WordSpec}
 import sbtrelease.Git
 
+import scala.util.Properties
+
 lazy val testMdoc = (project in file("."))
   .enablePlugins(MdocPlugin)
   .settings(
@@ -44,7 +46,7 @@ lazy val testMdoc = (project in file("."))
           Command.process(ReleaseKeys.releaseCommand.nameOption.get, sbtState)
 
           assert(generatedMarkdownFile.exists(), s"$generatedMarkdownFile not found")
-          assert(generatedMarkdownFile.contentAsString == "KEY : VALUE\n")
+          assert(generatedMarkdownFile.contentAsString == s"KEY : VALUE${Properties.lineSeparator}")
         }
       }
     })
