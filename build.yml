@@ -1,0 +1,72 @@
+name: Build
+
+on:
+  push:
+    branches-ignore: release/*
+  pull_request:
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  remark-lint:
+    name: remark-lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout with GIT
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13
+
+    - name: Cache NPM
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Update NPM
+      run: npm install --global npm@latest
+
+    - name: Install NPM dependencies
+      # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
+      run: npm ci
+
+    - name: lint
+      run: npm run remark-lint
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout with GIT
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        # https://docs.scala-lang.org/overviews/jdk-compatibility/overview.html#running-versus-compiling
+        java-version: 1.8
+
+    - name: Cache SBT ivy cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.ivy2/cache
+        key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('**/build.sbt') }}
+    - name: Cache SBT
+      uses: actions/cache@v1
+      with:
+        path: ~/.sbt
+        key: ${{ runner.os }}-sbt-${{ hashFiles('**/build.sbt') }}
+
+    - name: scalafmt
+      run: sbt "scalafmtSbtCheck" "scalafmtCheckAll"
+
+    - name: mdoc check
+      run: sbt mdoc
+
+    - name: Run tests
+      # When running scripted tests targeting multiple SBT versions, we must first publish locally for all SBT versions
+      run: sbt "^ test" "^ publishLocal" "scripted"
