@@ -15,11 +15,6 @@ jobs:
     - name: Checkout with GIT
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 13
-
     - name: Cache NPM
       uses: actions/cache@v1
       with:
@@ -27,6 +22,11 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 13
 
     - name: Update NPM
       run: npm install --global npm@latest
