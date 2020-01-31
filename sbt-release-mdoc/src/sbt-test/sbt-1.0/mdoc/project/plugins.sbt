@@ -6,8 +6,6 @@ sys.props.get("plugin.version") match {
                          |Specify this property using the scriptedLaunchOpts -D.""".stripMargin)
 }
 
-useCoursier := false
-
 addSbtPlugin("com.github.daniel-shuy" % "sbt-scripted-scalatest" % "2.0.0")
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0-SNAP10"
 
