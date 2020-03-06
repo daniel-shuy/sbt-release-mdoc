@@ -45,8 +45,8 @@ object ReleaseMdocStateTransformations {
       .map(_._2.toEither)
       .map(_.map(_.mkString(" ")))
       .map(
-        _.map(
-          options => propsDefaultScalacOptions.copy(scalacOptions = options),
+        _.map(options =>
+          propsDefaultScalacOptions.copy(scalacOptions = options),
         ),
       )
       .map(_.getOrElse(propsDefaultScalacOptions))
