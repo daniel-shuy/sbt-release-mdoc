@@ -10,6 +10,6 @@ addSbtPlugin("com.github.daniel-shuy" % "sbt-scripted-scalatest" % "2.0.0")
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.0-SNAP10"
 
 libraryDependencies ++= Seq(
-  "org.eclipse.jgit" % "org.eclipse.jgit" % "5.7.0.202003090808-r",
+  "org.eclipse.jgit" % "org.eclipse.jgit" % "5.7.0.202003110725-r",
   "com.github.pathikrit" %% "better-files" % "3.8.0",
 )
