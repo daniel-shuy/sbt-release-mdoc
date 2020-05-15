@@ -89,11 +89,12 @@ object ReleaseMdocStateTransformations {
   /**
     * @see [[ReleaseStateTransformations]]`.toProcessLogger(State)`
     */
-  protected def toProcessLogger(st: State): ProcessLogger = new ProcessLogger {
-    override def err(s: => String): Unit = st.log.info(s)
-    override def out(s: => String): Unit = st.log.info(s)
-    override def buffer[T](f: => T): T = st.log.buffer(f)
-  }
+  protected def toProcessLogger(st: State): ProcessLogger =
+    new ProcessLogger {
+      override def err(s: => String): Unit = st.log.info(s)
+      override def out(s: => String): Unit = st.log.info(s)
+      override def buffer[T](f: => T): T = st.log.buffer(f)
+    }
 
   /**
     * @see [[ReleaseStateTransformations]]`.vcs(State)`
