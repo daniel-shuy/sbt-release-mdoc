@@ -2,9 +2,6 @@
   extends: [
     'config:base',
   ],
-  ignoreDeps: [
-    'org.scalameta:mdoc',
-  ],
   rebaseStalePrs: true,
   stabilityDays: 1,
   automerge: true,
@@ -12,6 +9,16 @@
     automerge: false,
   },
   packageRules: [
+    {
+      packageNames: [
+        'org.scalameta:mdoc',
+      ],
+      updateTypes: [
+        'minor',
+        'patch',
+      ],
+      enabled: false,
+    },
     {
       packageNames: [
         'org.scalameta:sbt-scalafmt',
