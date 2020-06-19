@@ -2,7 +2,8 @@ import better.files.{File, FileExtensions}
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 import com.github.daniel.shuy.sbt.scripted.scalatest.ScriptedScalaTestSuiteMixin
 import org.eclipse.jgit.api.{Git => JGit}
-import org.scalatest.{BeforeAndAfterAll, WordSpec}
+import org.scalatest.BeforeAndAfterAll
+import org.scalatest.wordspec.AnyWordSpec
 import sbtrelease.Git
 
 import scala.collection.JavaConverters._
@@ -23,7 +24,7 @@ lazy val testCommit = (project in file("."))
     ),
 
     scriptedScalaTestStacks := SbtScriptedScalaTest.FullStacks,
-    scriptedScalaTestSpec := Some(new WordSpec with ScriptedScalaTestSuiteMixin with BeforeAndAfterAll {
+    scriptedScalaTestSpec := Some(new AnyWordSpec with ScriptedScalaTestSuiteMixin with BeforeAndAfterAll {
       override val sbtState: State = state.value
 
       override def beforeAll(): Unit = JGit.init().call().close()
