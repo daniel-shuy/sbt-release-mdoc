@@ -8,8 +8,7 @@ on:
     - cron: 0 0 * * *
 
 jobs:
-  remark-lint:
-    name: remark-lint
+  lint:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout with GIT
@@ -32,10 +31,12 @@ jobs:
       run: npm install --global npm@latest
 
     - name: Install NPM dependencies
-      # Install remark plugins in project folder (see https://github.com/remarkjs/remark-lint/issues/165)
       run: npm ci
 
-    - name: lint
+    - name: renovate-config-validator
+      run: npm run renovate-config-validator
+
+    - name: remark-lint
       run: npm run remark-lint
 
   build:
