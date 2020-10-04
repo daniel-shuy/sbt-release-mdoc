@@ -13,7 +13,7 @@
     "remark-lint-maximum-line-length": "2.0.3",
     "remark-lint-ordered-list-marker-value": "2.0.1",
     "remark-preset-lint-markdown-style-guide": "3.0.1",
-    "renovate": "23.40.1"
+    "renovate": "23.41.0"
   },
   "repository": {
     "type": "git",
