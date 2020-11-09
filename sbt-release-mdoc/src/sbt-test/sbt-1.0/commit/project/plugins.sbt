@@ -7,7 +7,7 @@ sys.props.get("plugin.version") match {
 }
 
 addSbtPlugin("com.github.daniel-shuy" % "sbt-scripted-scalatest" % "2.0.0")
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.2"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.3"
 
 libraryDependencies ++= Seq(
   "org.eclipse.jgit" % "org.eclipse.jgit" % "5.9.0.202009080501-r",
