@@ -7,7 +7,7 @@
   },
   "devDependencies": {
     "eslint": "7.14.0",
-    "eslint-plugin-json5": "0.1.1",
+    "eslint-plugin-json5": "0.1.2",
     "remark-cli": "9.0.0",
     "remark-lint-list-item-indent": "2.0.1",
     "remark-lint-maximum-line-length": "2.0.3",
