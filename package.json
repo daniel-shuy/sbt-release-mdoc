@@ -6,7 +6,7 @@
     "renovate-config-validator": "renovate-config-validator"
   },
   "devDependencies": {
-    "eslint": "7.21.0",
+    "eslint": "7.22.0",
     "eslint-plugin-json5": "0.1.2",
     "remark-cli": "9.0.0",
     "remark-lint-list-item-indent": "2.0.1",
