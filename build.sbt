@@ -2,7 +2,7 @@ import ReleaseTransformations._
 import com.github.daniel.shuy.sbt.release.mdoc.ReleaseMdocStateTransformations
 
 val sbtReleaseVersion = "1.0.13"
-val mdocVersion = "2.5.3"
+val mdocVersion = "2.5.4"
 
 ThisBuild / organization := "com.github.daniel-shuy"
 ThisBuild / name := "sbt-release-mdoc"
